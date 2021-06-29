@@ -13,9 +13,15 @@ bool isFull() {
 	return Q.rear == MAX;
 }
 
-//cek apakah antrian kosong
+//cek apakah antrian kosong 
 bool isEmpty() {
 	return Q.rear == 0;
+}
+
+//Hapus semua data
+void clear() {
+  Q.front=Q.rear=-1;
+  printf("semua data terhapus.\n");
 }
 
 //Hapus tampilan Layar
@@ -23,6 +29,7 @@ void cls() {
   cout << "Press any key to clear the screen.\n";
   system("clear");
 }
+
 //menampilkan semua data Queue
 void tampil() {
   if (isEmpty()) {
@@ -98,28 +105,31 @@ void hitung() {
       total = total + Q.data[i];
     }
     rata = total/2;
-    cout << "Jumlah Total Data : " << total
+    cout << "\nJumlah Total Data : " << total
          << "\nRata-rata Data : " << rata
          << "\nData terkecil : " << kecil
          << "\nData terbesar : " << besar;
   }
 }
+
 int main() 
 {
 	int choose;
 	do
 	{
 		//Tampilan menu
-		cout << "\n-------------------\n"
-			<< "   Menu Pilihan\n"
+		cout << "\n-------------------------\n"
+      <<" Tugas Program QUEUE\n"
+			<< "    Menu Pilihan\n"
       << "Dibuat oleh ArizkiNewbie\n"
-			<< "-------------------\n"
-			<< " [1] Tambah Data \n"
-			<< " [2] Hapus Data\n"
-      << " [3] Tampilkan Data\n"
-      << " [4] Hitung Data (Total, Average, Terbesar, Terkecil)\n"
-      << " [5] Hapus tampilan Layar (clear)\n"
-			<< " [6] Keluar \n"
+			<< "-------------------------\n"
+			<< " [1] Tambah Data (Enqueue)\n"
+			<< " [2] Hapus Data (Dequeue)\n"
+      << " [3] Kosongkan Semua Data\n" 
+      << " [4] Tampilkan Data\n"
+      << " [5] Hitung Data (Total, Average, Terbesar, Terkecil)\n"
+      << " [6] Hapus tampilan Layar (clear)\n"
+			<< " [7] Keluar \n"
 			<< "-------------------\n"
 			<< "Masukkan pilihan : "; cin >> choose;
       cout << endl;
@@ -133,19 +143,22 @@ int main()
 			dequeue();
 			break;
     case 3:
-			tampil();
+			clear();
 			break;
     case 4:
-			hitung();
+			tampil();
 			break;
     case 5:
+			hitung();
+			break;
+    case 6:
 			cls();
 			break;
 		default:
-      if (choose != 6)
+      if (choose != 7)
 			cout << "Pilihan tidak tersedia\n";
 			break;
 		}
-	} while (choose !=6);
+	} while (choose !=7);
 	return 0;
 }
